@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GM Publication</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo-section">
+    <img src="images/logo.jpeg" alt="GM Publication">
+  </div>
+  <div class="brand">GM Publication</div>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+</header>
+
+<!-- MENU -->
+<nav class="menu-list" id="menu">
+  <a href="#">Home</a>
+  <a href="#">Coins</a>
+  <a href="#">Coupon</a>
+  <a href="#">Category</a>
+  <a href="#">My Orders</a>
+  <a href="#">Cart</a>
+  <a href="#">Payment History</a>
+  <a href="#">Login</a>
+</nav>
+
+<!-- USER INFO -->
+<div class="user-info">
+  <div>💰 Coins: <b>100</b></div>
+  <div>
+    🔗 Referral Code: <b id="referralCode">GM12345</b>
+    <button onclick="shareReferral()">Share</button>
+  </div>
+</div>
+
+<!-- HERO SLIDER -->
+<section class="hero-slider" id="heroSlider">
+  <div class="hero-content">
+    <h1>GM Publication</h1>
+    <p>Best Institute for Competitive Exam Preparation</p>
+    <button class="hero-btn">Get Started</button>
+  </div>
+  <img src="images/person.jpg" class="hero-person" alt="Teacher">
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    🎯 Get 100 Coins on Registration | 📚 Expert Faculty | 🤝 Refer Friends & Earn More Coins
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <h2>Books for Students</h2>
+
+  <div class="search-section">
+    <input type="text" placeholder="Search Category">
+    <button><i class="fas fa-search"></i></button>
+  </div>
+
+  <div class="search-section">
+    <input type="text" placeholder="Search Subcategory">
+    <button><i class="fas fa-search"></i></button>
+  </div>
+
+  <div class="search-section">
+    <input type="text" placeholder="Search Book / Author">
+    <button><i class="fas fa-search"></i></button>
+  </div>
+
+  <!-- PRODUCT SLIDER -->
+  <div class="product-slider">
+    <div class="product-card">
+      <img src="images/book1.jpg">
+      <h4>Mathematics Class 10</h4>
+      <p>RD Sharma</p>
+      <p>₹250</p>
+      <button onclick="openBuyModal('Mathematics Class 10')">Buy Now</button>
+      <button>PDF Demo</button>
+    </div>
+
+    <div class="product-card">
+      <img src="images/book2.jpg">
+      <h4>Physics Class 12</h4>
+      <p>HC Verma</p>
+      <p>₹300</p>
+      <button onclick="openBuyModal('Physics Class 12')">Buy Now</button>
+      <button>PDF Demo</button>
+    </div>
+  </div>
+</section>
+
+<!-- BUY MODAL -->
+<div id="buyModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeBuyModal()">&times;</span>
+    <h3 id="bookTitle"></h3>
+
+    <label><input type="radio" name="buyOption" value="pdf" checked> Only PDF</label><br>
+    <label><input type="radio" name="buyOption" value="hardcopy"> Hard Copy</label>
+
+    <div id="addressForm">
+      <input placeholder="Full Name">
+      <input placeholder="Address">
+      <input placeholder="City">
+      <input placeholder="Pincode">
+    </div>
+
+    <button onclick="proceedPayment()">Proceed</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="#">Contact Us</a>
+    <a href="#">Login</a>
+    <a href="#">About Us</a>
+    <a href="#">Terms & Conditions</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Refund Policy</a>
+  </div>
+
+  <div class="footer-social">
+    <a class="facebook"><i class="fab fa-facebook-f"></i></a>
+    <a class="instagram"><i class="fab fa-instagram"></i></a>
+    <a class="youtube"><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <p>© 2025 GM Publication</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
