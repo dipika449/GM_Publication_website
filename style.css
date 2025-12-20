@@ -82,6 +82,75 @@ select,input{
 #addressForm input{width:100%;margin:5px 0;padding:6px}
 .pay-btn{background:#16a34a;color:white;border:none;padding:8px;width:100%}
 
+
+.popup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  z-index:9999;
+
+  /* NEW (important) */
+  justify-content:center;
+  align-items:center;
+}
+
+.popup-box{
+  width:360px;
+  background:#1e2b40;
+  color:#fff;
+  padding:30px;
+  border-radius:8px;
+  position:relative;
+}
+
+.popup-box h2{
+  text-align:center;
+}
+
+.popup-box input{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border:none;
+  border-radius:5px;
+}
+
+.popup-box button{
+  width:100%;
+  padding:10px;
+  background:#ff9800;
+  border:none;
+  border-radius:5px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.close{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.link{
+  text-align:center;
+  margin-top:15px;
+}
+
+.link a{
+  color:#ff9800;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.error{
+  color:#ff4d4d;
+  text-align:center;
+}
+
+
 /* FOOTER */
 .footer{background:#0f172a;color:white;text-align:center;padding:30px}
 .footer-links a{color:#38bdf8;margin:0 8px;text-decoration:none}

@@ -28,7 +28,7 @@
   <a href="#">My Orders</a>
   <a href="#">Cart</a>
   <a href="#">Payment History</a>
-  <a href="#">Login</a>
+  <a href="#" onclick="openLogin()">Login</a>
 </nav>
 
 <!-- USER INFO -->
@@ -124,6 +124,52 @@
 
   <p>© 2025 GM Publication</p>
 </footer>
+
+<!-- LOGIN POPUP -->
+<div class="popup" id="loginPopup">
+  <div class="popup-box">
+    <span class="close" onclick="closeLogin()">×</span>
+    <h2>Login</h2>
+
+    <input type="text" id="loginUser" placeholder="User ID / Email">
+    <input type="password" id="loginPass" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <p class="error" id="loginError"></p>
+
+    <p class="link">
+      Don’t have an account?
+      <a href="#" onclick="openRegister()">Register</a>
+    </p>
+  </div>
+</div>
+
+<!-- REGISTER POPUP -->
+<div class="popup" id="registerPopup">
+  <div class="popup-box">
+    <span class="close" onclick="closeRegister()">×</span>
+    <h2>Register</h2>
+
+    <input type="text" placeholder="Full Name">
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <input type="confirm password" placeholder="confirm password">
+    <input type="text" placeholder="City" name="city">
+    <input type="tel" placeholder="Phone Number" name="phone">
+    <input type="text" placeholder="Referral Code" name="referral_code">
+
+
+
+    <button onclick="register()">Register</button>
+
+    <p class="link">
+      Already have an account?
+      <a href="#" onclick="openLogin()">Login</a>
+    </p>
+  </div>
+</div>
+
 
 <script src="script.js"></script>
 </body>
