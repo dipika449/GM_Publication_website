@@ -40,14 +40,14 @@
   </div>
 </div>
 
-<!-- HERO SLIDER -->
+<!-- HERO -->
 <section class="hero-slider" id="heroSlider">
   <div class="hero-content">
     <h1>GM Publication</h1>
     <p>Best Institute for Competitive Exam Preparation</p>
     <button class="hero-btn">Get Started</button>
   </div>
-  <img src="images/person.jpg" class="hero-person" alt="Teacher">
+  <img src="images/person.jpg" class="hero-person">
 </section>
 
 <!-- MARQUEE -->
@@ -57,55 +57,42 @@
   </div>
 </div>
 
-<!-- PRODUCTS -->
+<!-- ================= BOOKS FOR STUDENTS (REPLACED) ================= -->
 <section class="products">
-  <h2>Books for Students</h2>
+  <h2>📚 Books for Students</h2>
 
-  <div class="search-section">
-    <input type="text" placeholder="Search Category">
-    <button><i class="fas fa-search"></i></button>
-  </div>
+  <!-- CATEGORY -->
+  <select id="category" onchange="loadSubcategory()">
+    <option value="">Select Category</option>
+    <option value="exam">Competitive Exam</option>
+    <option value="school">School Level</option>
+  </select>
 
-  <div class="search-section">
-    <input type="text" placeholder="Search Subcategory">
-    <button><i class="fas fa-search"></i></button>
-  </div>
+  <!-- SUBCATEGORY -->
+  <select id="subcategory" onchange="loadBooks()">
+    <option value="">Select Subcategory</option>
+  </select>
 
-  <div class="search-section">
-    <input type="text" placeholder="Search Book / Author">
-    <button><i class="fas fa-search"></i></button>
-  </div>
+  <!-- SEARCH -->
+  <input type="text" id="bookSearch" placeholder="Search Book / Author" onkeyup="searchBook()">
 
-  <!-- PRODUCT SLIDER -->
-  <div class="product-slider">
-    <div class="product-card">
-      <img src="images/book1.jpg">
-      <h4>Mathematics Class 10</h4>
-      <p>RD Sharma</p>
-      <p>₹250</p>
-      <button onclick="openBuyModal('Mathematics Class 10')">Buy Now</button>
-      <button>PDF Demo</button>
-    </div>
-
-    <div class="product-card">
-      <img src="images/book2.jpg">
-      <h4>Physics Class 12</h4>
-      <p>HC Verma</p>
-      <p>₹300</p>
-      <button onclick="openBuyModal('Physics Class 12')">Buy Now</button>
-      <button>PDF Demo</button>
-    </div>
-  </div>
+  <!-- BOOK LIST -->
+  <div class="product-grid" id="bookList"></div>
 </section>
 
 <!-- BUY MODAL -->
-<div id="buyModal" class="modal">
+<div class="modal" id="buyModal">
   <div class="modal-content">
     <span class="close" onclick="closeBuyModal()">&times;</span>
-    <h3 id="bookTitle"></h3>
+    <h3 id="selectedBook"></h3>
 
-    <label><input type="radio" name="buyOption" value="pdf" checked> Only PDF</label><br>
-    <label><input type="radio" name="buyOption" value="hardcopy"> Hard Copy</label>
+    <label>
+      <input type="radio" name="buyType" value="pdf" checked onclick="toggleAddress()"> Only PDF
+    </label><br>
+
+    <label>
+      <input type="radio" name="buyType" value="hardcopy" onclick="toggleAddress()"> Hard Copy
+    </label>
 
     <div id="addressForm">
       <input placeholder="Full Name">
@@ -114,7 +101,7 @@
       <input placeholder="Pincode">
     </div>
 
-    <button onclick="proceedPayment()">Proceed</button>
+    <button class="pay-btn" onclick="proceedPayment()">Proceed Payment</button>
   </div>
 </div>
 
