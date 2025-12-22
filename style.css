@@ -162,3 +162,44 @@ select,input{
 .facebook{background:#1877f2}
 .instagram{background:#e4405f}
 .youtube{background:#ff0000}
+
+
+/* ================= FILTER + CATEGORY UI (ADD AT BOTTOM) ================= */
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.list-box {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.list-item {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5px;
+}
+
+.view-btn,
+.search-btn {
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.search-box {
+  margin-top: 5px;
+  display: none;
+}
