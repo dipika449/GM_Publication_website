@@ -196,4 +196,3 @@ function proceedPayment() {
 }
 
 // Load categories on page load
-
