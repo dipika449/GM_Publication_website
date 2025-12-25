@@ -77,16 +77,8 @@ function loadCategory() {
 }
 
 function selectCategory(cat) {
-  currentCategory = cat;
-  currentSub = "";
-  document.getElementById("subcategorySection").style.display = "block";
-  document.getElementById("bookSection").style.display = "none";
-
-  const subBox = document.getElementById("subcategoryList");
-  subBox.innerHTML = "";
-  Object.keys(store[cat]).forEach(sub => {
-    subBox.innerHTML += `<div class="list-item" onclick="selectSub('${sub}')">${sub}</div>`;
-  });
+  window.location.href =
+    `subcategory.html?category=${encodeURIComponent(cat)}`;
 }
 
 function searchCategory() {
@@ -109,10 +101,13 @@ function viewAllCategories() { loadCategory(); }
 
 // ================= SUBCATEGORY FUNCTIONS =================
 function selectSub(sub) {
-  currentSub = sub;
-  document.getElementById("bookSection").style.display = "block";
-  loadBooks();
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+
+  window.location.href =
+    `book.html?category=${encodeURIComponent(category)}&sub=${encodeURIComponent(sub)}`;
 }
+
 
 function searchSubcategory() {
   const key = document.getElementById("subcategorySearch").value.toLowerCase();
@@ -196,3 +191,7 @@ function proceedPayment() {
 }
 
 // Load categories on page load
+
+if (document.getElementById("categoryList")) {
+  loadCategory();
+}

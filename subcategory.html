@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sub Category</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="products">
+  <h2 id="categoryTitle"></h2>
+
+  <!-- SUBCATEGORY (VISIBLE) -->
+  <div class="filter-header">
+    <span>Sub Category</span>
+    <button class="search-btn">
+      <i class="fa fa-search"></i>
+    </button>
+    <button class="view-btn">View All</button>
+  </div>
+
+  <div id="subcategoryList" class="list-box">
+    <!-- later dynamic list -->
+  </div>
+
+  <div id="subcategorySearchBox" class="search-box">
+    <input type="text"
+           id="subcategorySearch"
+           placeholder="Search Subcategory..."
+           onkeyup="searchSubcategory()">
+  </div>
+</section>
+
+<script src="script.js"></script>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  document.getElementById("categoryTitle").innerText =
+    "Category: " + params.get("category");
+</script>
+
+</body>
+</html>
