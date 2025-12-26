@@ -7,36 +7,41 @@
 </head>
 <body>
 
-<section class="products">
-  <h2 id="categoryTitle"></h2>
+<h2 id="categoryTitle"></h2>
 
-  <!-- SUBCATEGORY (VISIBLE) -->
-  <div class="filter-header">
-    <span>Sub Category</span>
-    <button class="search-btn">
-      <i class="fa fa-search"></i>
-    </button>
-    <button class="view-btn">View All</button>
-  </div>
+<input
+  type="text"
+  id="subcategorySearch"
+  placeholder="Search Sub Category"
+  onkeyup="searchSubcategory()"
+/>
 
-  <div id="subcategoryList" class="list-box">
-    <!-- later dynamic list -->
-  </div>
-
-  <div id="subcategorySearchBox" class="search-box">
-    <input type="text"
-           id="subcategorySearch"
-           placeholder="Search Subcategory..."
-           onkeyup="searchSubcategory()">
-  </div>
-</section>
+<div id="subcategoryList"></div>
 
 <script src="script.js"></script>
 
 <script>
   const params = new URLSearchParams(window.location.search);
-  document.getElementById("categoryTitle").innerText =
-    "Category: " + params.get("category");
+  const category = params.get("category");
+
+  if (!category || !store[category]) {
+    document.getElementById("subcategoryList").innerText =
+      "Invalid Category";
+  } else {
+    document.getElementById("categoryTitle").innerText = category;
+
+    const box = document.getElementById("subcategoryList");
+    box.innerHTML = "";
+
+    Object.keys(store[category]).forEach(sub => {
+      box.innerHTML += `
+        <div class="list-item"
+             onclick="selectSubcategory('${sub}')">
+          ${sub}
+        </div>
+      `;
+    });
+  }
 </script>
 
 </body>

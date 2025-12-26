@@ -72,7 +72,47 @@
     <input type="text" id="categorySearch" placeholder="Search Category..." onkeyup="searchCategory()">
   </div>
 
-  
+  <!-- SUBCATEGORY -->
+  <div id="subcategorySection" style="display:none;">
+    <div class="filter-header">
+      <span>Sub Category</span>
+      <button class="search-btn" onclick="toggleSubcategorySearch()"><i class="fa fa-search"></i></button>
+      <button class="view-btn" onclick="viewAllSubcategories()">View All</button>
+    </div>
+    <div id="subcategoryList" class="list-box"></div>
+    <div id="subcategorySearchBox" class="search-box">
+      <input type="text" id="subcategorySearch" placeholder="Search Subcategory..." onkeyup="searchSubcategory()">
+    </div>
+  </div>
+
+  <!-- BOOK LIST -->
+  <div id="bookSection" style="display:none;">
+    <div class="filter-header">
+      <span>Books</span>
+      <input type="text" id="bookSearch" placeholder="🔍 Search Book / Author" onkeyup="searchBook()">
+    </div>
+    <div id="bookList" class="product-grid"></div>
+  </div>
+
+  <!-- BUY MODAL -->
+  <div class="modal" id="buyModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeBuyModal()">&times;</span>
+      <h3 id="selectedBook"></h3>
+      <label><input type="radio" name="buyType" value="pdf" checked onclick="toggleAddress()"> Only PDF</label><br>
+      <label><input type="radio" name="buyType" value="hardcopy" onclick="toggleAddress()"> Hard Copy</label>
+      <div id="addressForm" class="address-form">
+        <input placeholder="Full Name">
+        <input placeholder="Address">
+        <input placeholder="City">
+        <input placeholder="Pincode">
+      </div>
+      <button class="pay-btn" onclick="proceedPayment()">Proceed Payment</button>
+    </div>
+  </div>
+</section>
+
+
 
 <!-- FOOTER -->
 <footer class="footer">

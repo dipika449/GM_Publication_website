@@ -64,8 +64,7 @@ const store = {
   }
 };
 
-let currentCategory = "";
-let currentSub = "";
+
 
 // ================= CATEGORY FUNCTIONS =================
 function loadCategory() {
@@ -78,8 +77,10 @@ function loadCategory() {
 
 function selectCategory(cat) {
   window.location.href =
-    `subcategory.html?category=${encodeURIComponent(cat)}`;
+    "subcategory.html?category=" + encodeURIComponent(cat);
 }
+
+
 
 function searchCategory() {
   const key = document.getElementById("categorySearch").value.toLowerCase();
@@ -100,7 +101,7 @@ function toggleCategorySearch() {
 function viewAllCategories() { loadCategory(); }
 
 // ================= SUBCATEGORY FUNCTIONS =================
-function selectSub(sub) {
+function selectSubcategory(sub) {
   const params = new URLSearchParams(window.location.search);
   const category = params.get("category");
 
@@ -110,65 +111,80 @@ function selectSub(sub) {
 
 
 function searchSubcategory() {
-  const key = document.getElementById("subcategorySearch").value.toLowerCase();
+  const key = document
+    .getElementById("subcategorySearch")
+    .value
+    .toLowerCase();
+
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+
   const box = document.getElementById("subcategoryList");
   box.innerHTML = "";
-  Object.keys(store[currentCategory]).forEach(sub => {
-    if(sub.toLowerCase().includes(key)) {
-      box.innerHTML += `<div class="list-item" onclick="selectSub('${sub}')">${sub}</div>`;
+
+  Object.keys(store[category]).forEach(sub => {
+    if (sub.toLowerCase().includes(key)) {
+      box.innerHTML += `
+        <div class="list-item"
+             onclick="selectSubcategory('${sub}')">
+          ${sub}
+        </div>
+      `;
     }
   });
 }
+
 
 function toggleSubcategorySearch() {
   const box = document.getElementById("subcategorySearchBox");
   box.style.display = (box.style.display==="none") ? "block" : "none";
 }
 
-function viewAllSubcategories() { selectCategory(currentCategory); }
+function viewAllSubcategories() {
+  window.location.reload();
+}
+
 
 // ================= BOOK FUNCTIONS =================
 function loadBooks() {
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+  const sub = params.get("sub");
+
   const box = document.getElementById("bookList");
   box.innerHTML = "";
-  store[currentCategory][currentSub].forEach(book => {
+
+  store[category][sub].forEach(book => {
     box.innerHTML += `
       <div class="product-card">
-        <img src="${book.img}" class="book-thumb">
+        <img src="${book.img}">
         <h4>${book.name}</h4>
-        <p>✍ ${book.author}</p>
-        <p class="price">MRP: ₹${book.price}</p>
-        <div class="btn-row">
-          <button>Demo</button>
-          <button>PDF</button>
-        </div>
-        <div class="btn-row">
-          <button onclick="openBuyModal('${book.name}')">Buy Now</button>
-          <button>Add to Cart</button>
-        </div>
+        <p>${book.author}</p>
+        <button onclick="openBuyModal('${book.name}')">Buy</button>
       </div>
     `;
   });
 }
 
+
 function searchBook() {
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+  const sub = params.get("sub");
+
   const key = document.getElementById("bookSearch").value.toLowerCase();
-  const books = store[currentCategory][currentSub] || [];
-  const filtered = books.filter(b => b.name.toLowerCase().includes(key) || b.author.toLowerCase().includes(key));
+  const books = store[category][sub];
+
   const box = document.getElementById("bookList");
   box.innerHTML = "";
-  filtered.forEach(book => {
-    box.innerHTML += `
-      <div class="product-card">
-        <img src="${book.img}" class="book-thumb">
-        <h4>${book.name}</h4>
-        <p>✍ ${book.author}</p>
-        <p class="price">MRP: ₹${book.price}</p>
-        <button onclick="openBuyModal('${book.name}')">Buy Now</button>
-      </div>
-    `;
-  });
+
+  books
+    .filter(b => b.name.toLowerCase().includes(key))
+    .forEach(book => {
+      box.innerHTML += `<div>${book.name}</div>`;
+    });
 }
+
 
 // ================= BUY MODAL =================
 function openBuyModal(bookName) {
@@ -191,7 +207,3 @@ function proceedPayment() {
 }
 
 // Load categories on page load
-
-if (document.getElementById("categoryList")) {
-  loadCategory();
-}

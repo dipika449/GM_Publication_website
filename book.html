@@ -3,90 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <title>Books</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<section class="products">
+<h2 id="bookTitle"></h2>
 
-  <!-- PAGE TITLE -->
-  <h2 id="bookTitle"></h2>
+<input
+  type="text"
+  id="bookSearch"
+  placeholder="Search Book"
+  onkeyup="searchBook()"
+/>
 
-  <!-- BOOK LIST SECTION -->
-  <div id="bookSection">
+<div id="bookList"></div>
 
-    <div class="filter-header">
-      <span>Books</span>
-      <input type="text"
-             id="bookSearch"
-             placeholder="🔍 Search Book / Author"
-             onkeyup="searchBook()">
-    </div>
-
-    <!-- BOOK GRID -->
-    <div id="bookList" class="product-grid">
-      <!-- Books will load here dynamically -->
-    </div>
-
-  </div>
-
-</section>
-
-<!-- BUY MODAL -->
-<div class="modal" id="buyModal">
-  <div class="modal-content">
-
-    <span class="close" onclick="closeBuyModal()">&times;</span>
-
-    <h3 id="selectedBook"></h3>
-
-    <label>
-      <input type="radio"
-             name="buyType"
-             value="pdf"
-             checked
-             onclick="toggleAddress()">
-      Only PDF
-    </label>
-    <br>
-
-    <label>
-      <input type="radio"
-             name="buyType"
-             value="hardcopy"
-             onclick="toggleAddress()">
-      Hard Copy
-    </label>
-
-    <!-- ADDRESS (Only for Hard Copy) -->
-    <div id="addressForm" class="address-form" style="display:none;">
-      <input type="text" placeholder="Full Name">
-      <input type="text" placeholder="Address">
-      <input type="text" placeholder="City">
-      <input type="text" placeholder="Pincode">
-    </div>
-
-    <button class="pay-btn" onclick="proceedPayment()">
-      Proceed Payment
-    </button>
-
-  </div>
-</div>
-
-<!-- JS -->
 <script src="script.js"></script>
 
-<!-- PAGE DATA -->
 <script>
   const params = new URLSearchParams(window.location.search);
   const category = params.get("category");
   const sub = params.get("sub");
 
-  document.getElementById("bookTitle").innerText =
-    `Books for ${category} → ${sub}`;
+  if (!category || !sub || !store[category] || !store[category][sub]) {
+    document.getElementById("bookList").innerText =
+      "No books found";
+  } else {
+    document.getElementById("bookTitle").innerText =
+      category + " → " + sub;
+
+    loadBooks();
+  }
 </script>
 
 </body>
