@@ -50,18 +50,26 @@ function register(){
 const store = {
   "Competitive Exam": {
     "SSC": [
-      { name: "SSC Maths", author: "Rakesh Yadav", price: 299, img: "images/book1.jpg" },
-      { name: "SSC English", author: "Pawan Kumar", price: 199, img: "images/book2.jpg" }
+      { 
+        name: "SSC Maths", 
+        author: "Rakesh Yadav", 
+        price: 299, 
+        img: "images/book1.jpg",
+        description: "Complete guide for SSC Maths covering all topics...",
+        demoContent: "Demo excerpt for SSC Maths."
+      },
+      { 
+        name: "SSC English", 
+        author: "Pawan Kumar", 
+        price: 199, 
+        img: "images/book2.jpg",
+        description: "Includes grammar, vocabulary, and comprehension practice.",
+        demoContent: "Demo content for SSC English."
+      }
     ],
-    "Banking": [
-      { name: "Bank PO Guide", author: "Arihant", price: 349, img: "images/book3.jpg" }
-    ]
+    // Other categories...
   },
-  "School Level": {
-    "Class 10": [
-      { name: "Class 10 Science", author: "NCERT", price: 199, img: "images/book4.jpg" }
-    ]
-  }
+  // Other main categories...
 };
 
 
@@ -157,14 +165,25 @@ function loadBooks() {
   store[category][sub].forEach(book => {
     box.innerHTML += `
       <div class="product-card">
-        <img src="${book.img}">
+        <img src="${book.img}" alt="${book.name}">
         <h4>${book.name}</h4>
-        <p>${book.author}</p>
-        <button onclick="openBuyModal('${book.name}')">Buy</button>
+        <p><em>${book.author}</em></p>
+        <p class="price">MRP: ₹${book.price}</p>
+        <p class="description" id="desc-${book.name.replace(/\s+/g,'')}">${truncateDescription(book.description || "No description available.", 4)}</p>
+        <button onclick="toggleDescription('${book.name.replace(/\s+/g,'')}')">See More</button>
+        <div class="card-btns">
+          <button class="demo" onclick="showDemoContent('${book.name}')">Demo Content</button>
+          <button class="demo" onclick="downloadDemoPDF('${book.name}')">Demo PDF</button>
+        </div>
+        <div class="card-btns">
+          <button class="buy" onclick="openBuyModal('${book.name}')">Buy Now</button>
+          <button class="add-cart" onclick="addToCart('${book.name}')">Add to Cart</button>
+        </div>
       </div>
     `;
   });
 }
+
 
 
 function searchBook() {
@@ -188,11 +207,21 @@ function searchBook() {
 
 // ================= BUY MODAL =================
 function openBuyModal(bookName) {
-  document.getElementById("selectedBook").innerText = bookName;
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+  const sub = params.get("sub");
+  const book = store[category][sub].find(b => b.name === bookName);
+
+  if (!book) return;
+
+  document.getElementById("selectedBook").innerHTML =
+    `<strong>${book.name}</strong><br><em>${book.author}</em><br>Price: ₹${book.price}`;
+
   document.getElementById("buyModal").style.display = "flex";
   document.getElementById("addressForm").style.display = "none";
   document.querySelector('input[name="buyType"][value="pdf"]').checked = true;
 }
+
 
 function closeBuyModal() { document.getElementById("buyModal").style.display = "none"; }
 
@@ -205,5 +234,73 @@ function proceedPayment() {
   alert("Payment Process Initiated!");
   closeBuyModal();
 }
+
+
+// ================= HELPER FUNCTIONS =================
+
+// Truncate long description
+function truncateDescription(text, maxLines) {
+  if (text.length > 200) return text.slice(0, 200) + "...";
+  return text;
+}
+
+// Toggle full description on "See More" click
+function toggleDescription(bookId) {
+  const descEl = document.getElementById(`desc-${bookId}`);
+  if (descEl.dataset.full === "true") {
+    descEl.innerText = truncateDescription(descEl.dataset.fullText, 4);
+    descEl.dataset.full = "false";
+  } else {
+    if (!descEl.dataset.fullText) {
+      descEl.dataset.fullText = descEl.innerText;
+    }
+    descEl.innerText = descEl.dataset.fullText;
+    descEl.dataset.full = "true";
+  }
+}
+
+// Show demo content alert
+function showDemoContent(bookName) {
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+  const sub = params.get("sub");
+  
+  const book = store[category][sub].find(b => b.name === bookName);
+  if (book && book.demoContent) {
+    alert(`Demo Content for ${bookName}:\n\n${book.demoContent}`);
+  } else {
+    alert("Demo content not available.");
+  }
+}
+
+// Demo PDF (currently placeholder)
+function downloadDemoPDF(bookName) {
+  alert(`Download Demo PDF for ${bookName} (add your PDF link here)`);
+}
+
+// Add to cart functionality
+function addToCart(bookName) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  cart.push(bookName);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(`${bookName} added to cart!`);
+}
+
+
+function shareReferral() {
+  const code = document.getElementById("referralCode").innerText;
+  const text = `Use my referral code: ${code}`;
+
+  if (navigator.share) {
+    navigator.share({
+      title: "Referral Code",
+      text: text
+    });
+  } else {
+    navigator.clipboard.writeText(text);
+    alert("Referral code copied!");
+  }
+}
+
 
 // Load categories on page load
