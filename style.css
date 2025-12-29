@@ -203,3 +203,115 @@ select,input{
   margin-top: 5px;
   display: none;
 }
+
+/* ================= FIX BUTTON CLICK ISSUE ================= */
+
+/* ===== PRODUCTS CLICK FIX ===== */
+.products {
+  position: relative;
+  z-index: 1000;
+}
+
+.product-grid {
+  position: relative;
+  z-index: 1100;
+}
+
+.product-card {
+  position: relative;
+  z-index: 1200;
+}
+
+.product-card button {
+  z-index: 1300;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Prevent hero/slider from blocking clicks */
+.hero-slider,
+.hero-person,
+.marquee {
+  pointer-events: none;
+}
+
+/* Modal must be on top */
+.modal {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: auto;
+}
+
+/* ===== FORCE CLICK FIX FOR BOOK PAGE ===== */
+
+html, body {
+  pointer-events: auto !important;
+}
+
+#bookList {
+  position: relative;
+  z-index: 1;
+}
+
+/* GRID MUST BE REAL GRID */
+.product-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* CARD MUST NOT BLOCK BUTTON */
+.product-card {
+  position: relative;
+  z-index: 20;
+  background: #fff;
+}
+
+/* 🔥 THIS IS THE KEY LINE */
+.product-card * {
+  pointer-events: auto !important;
+}
+
+/* BUTTONS */
+.product-card button {
+  position: relative;
+  z-index: 30;
+  cursor: pointer;
+}
+
+/* ===== FIX BOOK SEARCH INPUT OVERLAY ===== */
+
+#bookSearch {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  padding: 10px;
+  z-index: 1;
+}
+
+/* VERY IMPORTANT */
+#bookSearch {
+  pointer-events: auto;
+}
+
+/* Prevent input from covering product area */
+#bookSearch {
+  margin-bottom: 20px;
+}
+
+/* Products must be above input */
+#bookList {
+  position: relative;
+  z-index: 10;
+}
+
+.product-card,
+.product-card button {
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+  cursor: pointer;
+}

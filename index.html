@@ -25,8 +25,8 @@
   <a href="#">Coins</a>
   <a href="#">Coupon</a>
   <a href="#">Category</a>
-  <a href="#">My Orders</a>
-  <a href="#">Cart</a>
+  <a href="javascript:void(0);" onclick="showMyOrders()">My Orders</a>
+  <a href="javascript:void(0);" onclick="openCart()">Cart</a>
   <a href="#">Payment History</a>
   <a href="#" onclick="openLogin()">Login</a>
 </nav>
@@ -114,6 +114,65 @@
       <button class="pay-btn" onclick="proceedPayment()">Proceed Payment</button>
     </div>
   </div>
+</section>
+
+<!-- ✅ MY ORDERS SECTION -->
+<section id="myOrdersPage" style="display:none; padding:20px">
+  <h2>My Orders</h2>
+  <table border="1" cellpadding="10" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th>Book Name</th>
+        <th>Author</th>
+        <th>Price</th>
+        <th>Release Date</th>
+        <th>Delivery Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>SSC Maths</td>
+        <td>Rakesh Yadav</td>
+        <td>₹299</td>
+        <td>29-12-2025</td>
+        <td>05-01-2026</td>
+      </tr>
+      <tr>
+        <td>SSC English</td>
+        <td>Pawan Kumar</td>
+        <td>₹199</td>
+        <td>29-12-2025</td>
+        <td>05-01-2026</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- 🛒 CART SECTION -->
+<section id="cartPage" style="display:none; padding:20px">
+  <h2>🛒 My Cart</h2>
+
+  <table border="1" cellpadding="10" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th>Book</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="cartBody">
+      <!-- JS will add rows -->
+    </tbody>
+  </table>
+
+  <h3 style="margin-top:15px;">
+    Grand Total: ₹<span id="grandTotal">0</span>
+  </h3>
+
+  <button onclick="checkout()" style="margin-top:10px;">Checkout</button>
 </section>
 
 

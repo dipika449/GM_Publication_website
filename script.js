@@ -206,21 +206,22 @@ function searchBook() {
 
 
 // ================= BUY MODAL =================
-function openBuyModal(bookName) {
-  const params = new URLSearchParams(window.location.search);
-  const category = params.get("category");
-  const sub = params.get("sub");
-  const book = store[category][sub].find(b => b.name === bookName);
-
-  if (!book) return;
+function openBuyModal(book) {
+  if (!book) {
+    alert("Book data missing");
+    return;
+  }
 
   document.getElementById("selectedBook").innerHTML =
-    `<strong>${book.name}</strong><br><em>${book.author}</em><br>Price: ₹${book.price}`;
+    `<strong>${book.name}</strong><br>
+     <em>${book.author}</em><br>
+     Price: ₹${book.price}`;
 
   document.getElementById("buyModal").style.display = "flex";
   document.getElementById("addressForm").style.display = "none";
   document.querySelector('input[name="buyType"][value="pdf"]').checked = true;
 }
+
 
 
 function closeBuyModal() { document.getElementById("buyModal").style.display = "none"; }
@@ -231,9 +232,33 @@ function toggleAddress() {
 }
 
 function proceedPayment() {
-  alert("Payment Process Initiated!");
+  const buyType = document.querySelector('input[name="buyType"]:checked').value;
+
+  if (buyType === 'hardcopy') {
+    const form = document.getElementById('addressForm');
+    const inputs = form.querySelectorAll('input');
+    let valid = true;
+
+    inputs.forEach(input => {
+      if (!input.value.trim()) {
+        valid = false;
+        input.style.border = "1px solid red";  // highlight empty fields if empty
+      } else {
+        input.style.border = "";
+      }
+    });
+
+    if (!valid) {
+      alert("Please fill all address fields for hard copy delivery.");
+      return;  // stop if not valid
+    }
+  }
+
+  // If validation passes or PDF chosen, proceed:
+  alert(`Payment Process Initiated for ${buyType === 'pdf' ? 'PDF Reading' : 'Hard Copy Delivery'}!`);
   closeBuyModal();
 }
+
 
 
 // ================= HELPER FUNCTIONS =================
@@ -301,6 +326,54 @@ function shareReferral() {
     alert("Referral code copied!");
   }
 }
+
+function showMyOrders() {
+  document.getElementById("myOrdersPage").style.display = "block";
+}
+function showMyOrders() {
+    // Show the My Orders section
+    document.getElementById("myOrdersPage").style.display = "block";
+    // Hide other sections
+    document.getElementById("heroSlider").style.display = "none";
+    document.querySelector(".products").style.display = "none";
+}
+
+
+// ================= CART LOGIC =================
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Open Cart Page
+function openCart() {
+  document.getElementById("cartPage").style.display = "block";
+  document.getElementById("heroSlider").style.display = "none";
+  document.querySelector(".products").style.display = "none";
+  document.getElementById("myOrdersPage").style.display = "none";
+
+  renderCart();
+}
+
+// Add item to cart
+function addToCart(bookName, price) {
+  if (!bookName || !price) {
+    alert("Invalid product data");
+    return;
+  }
+
+  price = Number(price);
+
+  let item = cart.find(i => i.bookName === bookName);
+
+  if (item) {
+    item.qty += 1;
+  } else {
+    cart.push({ bookName, price, qty: 1 });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Book added to cart");
+}
+
+
 
 
 // Load categories on page load
