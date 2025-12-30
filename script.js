@@ -373,6 +373,16 @@ function addToCart(bookName, price) {
   alert("Book added to cart");
 }
 
+function showPaymentHistory() {
+    // Show Payment History
+    document.getElementById("paymentPage").style.display = "block";
+
+    // Hide other sections
+    document.getElementById("heroSlider").style.display = "none";
+    document.querySelector(".products").style.display = "none";
+    document.getElementById("myOrdersPage").style.display = "none";
+    document.getElementById("cartPage").style.display = "none";
+}
 
 
 

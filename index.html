@@ -27,7 +27,7 @@
   <a href="#">Category</a>
   <a href="javascript:void(0);" onclick="showMyOrders()">My Orders</a>
   <a href="javascript:void(0);" onclick="openCart()">Cart</a>
-  <a href="#">Payment History</a>
+  <a href="javascript:void(0);" onclick="showPaymentHistory()">Payment History</a>
   <a href="#" onclick="openLogin()">Login</a>
 </nav>
 
@@ -143,6 +143,44 @@
         <td>₹199</td>
         <td>29-12-2025</td>
         <td>05-01-2026</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+
+<!-- PAYMENT HISTORY -->
+<section id="paymentPage" class="page" style="display:none">
+  <h2>Payment History</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Transaction ID</th>
+        <th>Book Name</th>
+        <th>Amount</th>
+        <th>Payment Mode</th>
+        <th>Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>TXN123456</td>
+        <td>SSC Maths</td>
+        <td>₹299</td>
+        <td>UPI</td>
+        <td>29-12-2025</td>
+        <td class="success">Success</td>
+      </tr>
+      <tr>
+        <td>TXN123457</td>
+        <td>SSC English</td>
+        <td>₹199</td>
+        <td>Card</td>
+        <td>29-12-2025</td>
+        <td class="success">Success</td>
       </tr>
     </tbody>
   </table>

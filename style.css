@@ -315,3 +315,62 @@ html, body {
   pointer-events: auto;
   cursor: pointer;
 }
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
+  padding: 20px;
+}
+
+.menu {
+  margin-bottom: 20px;
+}
+
+.menu button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  background: #1f2a44;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.menu button:hover {
+  background: #324a78;
+}
+
+.page h2 {
+  margin-bottom: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+th, td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #f0f0f0;
+}
+
+.success {
+  color: green;
+  font-weight: bold;
+}
+
+#paymentPage {
+  background: white;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 6px;
+}
+
