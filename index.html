@@ -28,6 +28,7 @@
   <a href="javascript:void(0);" onclick="showMyOrders()">My Orders</a>
   <a href="javascript:void(0);" onclick="openCart()">Cart</a>
   <a href="javascript:void(0);" onclick="showPaymentHistory()">Payment History</a>
+  <a href="javascript:void(0);" onclick="showProfile()">👤 Profile</a>
   <a href="#" onclick="openLogin()">Login</a>
 </nav>
 
@@ -215,6 +216,47 @@
 
 
 
+
+<!-- 👤 PROFILE PAGE -->
+<section id="profilePage" style="display:none;" class="profile-page">
+
+  <h2>👤 Profile</h2>
+
+  <!-- Profile Info -->
+  <div class="profile-box">
+    <p><b>Name:</b> <span id="pName"></span></p>
+
+    <p>
+      <b>Mobile:</b>
+      <input id="pMobile">
+      <button onclick="changeMobile()">Change</button>
+    </p>
+
+    <p>
+      <b>Email:</b>
+      <input id="pEmail">
+      <button onclick="changeEmail()">Change</button>
+    </p>
+  </div>
+
+  <!-- Change Password -->
+  <div class="profile-box">
+    <h3>🔐 Change Password</h3>
+    <input type="password" id="oldPass" placeholder="Old Password">
+    <input type="password" id="newPass" placeholder="New Password">
+    <button onclick="changePassword()">Update Password</button>
+  </div>
+
+  <!-- Actions -->
+  <div class="profile-box danger">
+    <button onclick="logout()">Logout</button>
+    <button class="delete" onclick="deleteAccount()">Delete Account</button>
+  </div>
+
+</section>
+
+
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-links">
@@ -284,3 +326,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+

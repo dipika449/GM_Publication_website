@@ -384,6 +384,93 @@ function showPaymentHistory() {
     document.getElementById("cartPage").style.display = "none";
 }
 
+// ================= PROFILE FUNCTIONS =================
+
+// Sample logged-in user data
+let currentUser = {
+  name: "Rohit Kumar",
+  mobile: "9876543210",
+  email: "rohit@gmail.com",
+  password: "123456"  // For demo purposes only
+};
+
+// Show profile page
+function showProfile() {
+  document.getElementById("profilePage").style.display = "block";
+
+  // Hide other sections
+  document.getElementById("heroSlider").style.display = "none";
+  document.querySelector(".products").style.display = "none";
+  document.getElementById("myOrdersPage").style.display = "none";
+  document.getElementById("cartPage").style.display = "none";
+  document.getElementById("paymentPage").style.display = "none";
+
+  // Load user data
+  document.getElementById("pName").innerText = currentUser.name;
+  document.getElementById("pMobile").value = currentUser.mobile;
+  document.getElementById("pEmail").value = currentUser.email;
+}
+
+// Change mobile
+function changeMobile() {
+  const newMobile = document.getElementById("pMobile").value.trim();
+  if(newMobile === "") { alert("Enter mobile number"); return; }
+  currentUser.mobile = newMobile;
+  alert("Mobile updated successfully!");
+}
+
+// Change email
+function changeEmail() {
+  const newEmail = document.getElementById("pEmail").value.trim();
+  if(newEmail === "") { alert("Enter email"); return; }
+  currentUser.email = newEmail;
+  alert("Email updated successfully!");
+}
+
+// Change password
+function changePassword() {
+  const oldPass = document.getElementById("oldPass").value.trim();
+  const newPass = document.getElementById("newPass").value.trim();
+
+  if(oldPass === "" || newPass === "") {
+    alert("Please fill both password fields");
+    return;
+  }
+
+  if(oldPass !== currentUser.password) {
+    alert("Old password is incorrect!");
+    return;
+  }
+
+  currentUser.password = newPass;
+  document.getElementById("oldPass").value = "";
+  document.getElementById("newPass").value = "";
+  alert("Password updated successfully!");
+}
+
+// Logout
+function logout() {
+  alert("You have been logged out!");
+  // Optionally, redirect to homepage or login page
+  location.reload();
+}
+
+// Delete Account
+function deleteAccount() {
+  if(confirm("Are you sure you want to delete your account?")) {
+    currentUser = null;
+    alert("Account deleted successfully!");
+    location.reload();
+  }
+}
+
+
+function openProfileSecure() {
+  // future e login check add korte parbe
+  showProfile();
+}
+
+
 
 
 // Load categories on page load
