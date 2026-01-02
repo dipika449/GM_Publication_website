@@ -472,5 +472,53 @@ function openProfileSecure() {
 
 
 
+const referralCode = "GML5AOB36PP";
+const referralLink =
+  "https://gmselectionhub.com/register?ref=" + referralCode;
+
+function openShareModal() {
+  document.getElementById("shareModal").style.display = "flex";
+}
+
+function closeShareModal() {
+  document.getElementById("shareModal").style.display = "none";
+}
+
+function shareWhatsApp() {
+  window.open(
+    "https://wa.me/?text=" +
+    encodeURIComponent("Register & earn coins 👉 " + referralLink)
+  );
+}
+
+function shareFacebook() {
+  window.open(
+    "https://www.facebook.com/sharer/sharer.php?u=" +
+    encodeURIComponent(referralLink)
+  );
+}
+
+function shareTwitter() {
+  window.open(
+    "https://twitter.com/intent/tweet?url=" +
+    encodeURIComponent(referralLink)
+  );
+}
+
+function shareLinkedIn() {
+  window.open(
+    "https://www.linkedin.com/sharing/share-offsite/?url=" +
+    encodeURIComponent(referralLink)
+  );
+}
+
+function shareReddit() {
+  window.open(
+    "https://www.reddit.com/submit?url=" +
+    encodeURIComponent(referralLink)
+  );
+}
+
+
 
 // Load categories on page load

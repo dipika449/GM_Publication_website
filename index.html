@@ -45,6 +45,31 @@
   </div>
 </div>
 
+<!-- Share Button -->
+<button class="share-btn" onclick="openShareModal()">
+  Share & Earn
+</button>
+
+<!-- Share Modal -->
+<div id="shareModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeShareModal()">&times;</span>
+    <h2>Share Code & Earn</h2>
+
+    <div class="share-icons">
+      <div onclick="shareFacebook()">Facebook</div>
+      <div onclick="shareTwitter()">Twitter</div>
+      <div onclick="shareLinkedIn()">LinkedIn</div>
+      <div onclick="shareWhatsApp()">WhatsApp</div>
+      <div onclick="shareReddit()">Reddit</div>
+    </div>
+
+    <button class="close-btn" onclick="closeShareModal()">Close</button>
+  </div>
+</div>
+
+
+
 <!-- HERO -->
 <section class="hero-slider" id="heroSlider">
   <div class="hero-content">
