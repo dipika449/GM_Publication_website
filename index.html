@@ -33,40 +33,23 @@
 </nav>
 
 <!-- USER INFO -->
-<div class="user-info">
-  <div>💰 Coins: <b>100</b></div>
-
-  <div class="referral-row">
-    🔗 Referral Code: <b id="referralCode">GM12345678</b>
-
-    <button class="share-btn" onclick="shareReferral()" title="Share Referral Code">
-      <i class="fa-solid fa-share-nodes"></i>
-    </button>
-  </div>
+<!-- DASHBOARD (User A) -->
+<div class="container" id="dashboard">
+  <h3>Coins: 100</h3>
+  <p>Referral Code: <b id="refCode">GM123456</b></p>
+  <button onclick="shareReferral()">Share & Earn</button>
 </div>
 
-<!-- Share Button -->
-<button class="share-btn" onclick="openShareModal()">
-  Share & Earn
-</button>
-
-<!-- Share Modal -->
-<div id="shareModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeShareModal()">&times;</span>
-    <h2>Share Code & Earn</h2>
-
-    <div class="share-icons">
-      <div onclick="shareFacebook()">Facebook</div>
-      <div onclick="shareTwitter()">Twitter</div>
-      <div onclick="shareLinkedIn()">LinkedIn</div>
-      <div onclick="shareWhatsApp()">WhatsApp</div>
-      <div onclick="shareReddit()">Reddit</div>
-    </div>
-
-    <button class="close-btn" onclick="closeShareModal()">Close</button>
-  </div>
+<!-- REGISTER (User B) -->
+<div class="container hidden" id="register">
+  <h2>Register</h2>
+  <input type="text" placeholder="Name">
+  <input type="email" placeholder="Email">
+  <input type="password" placeholder="Password">
+  <input type="text" id="referralInput" placeholder="Referral Code" readonly>
+  <button id="registerBtn">Register</button>
 </div>
+
 
 
 

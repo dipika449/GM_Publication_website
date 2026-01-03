@@ -472,6 +472,9 @@ function openProfileSecure() {
 
 
 
+
+
+
 const referralCode = "GML5AOB36PP";
 const referralLink =
   "https://gmselectionhub.com/register?ref=" + referralCode;
@@ -518,6 +521,82 @@ function shareReddit() {
     encodeURIComponent(referralLink)
   );
 }
+
+
+
+
+// Step 1: Generate User A referral code
+// =======================
+function generateReferralCode() {
+  return "GM" + Math.floor(100000 + Math.random() * 900000);
+}
+
+const refCodeElement = document.getElementById("refCode");
+let myCode = localStorage.getItem("my_referral_code");
+
+if (!myCode) {
+  myCode = generateReferralCode();
+  localStorage.setItem("my_referral_code", myCode);
+}
+
+refCodeElement.innerText = myCode;
+
+// =======================
+// Step 2: Share function (multi-platform)
+// =======================
+function shareReferral() {
+  const link = `${window.location.origin}/index.html?ref=${myCode}`;
+  const text = "Join GM Platform and earn rewards with my referral!";
+
+  if (navigator.share) {
+    // Mobile: WhatsApp, Telegram, Instagram
+    navigator.share({
+      title: "GM Referral",
+      text: text,
+      url: link
+    }).catch(err => console.log(err));
+  } else {
+    // Desktop fallback: Facebook + Twitter
+    const fb = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`;
+    const tw = `https://twitter.com/intent/tweet?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`;
+    const wa = `https://wa.me/?text=${encodeURIComponent(text + " " + link)}`;
+    const tg = `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`;
+
+    window.open(fb, "_blank");
+    window.open(tw, "_blank");
+    window.open(wa, "_blank");
+    window.open(tg, "_blank");
+  }
+}
+
+// =======================
+// Step 3: Detect referral from URL (User B)
+// =======================
+const params = new URLSearchParams(window.location.search);
+const refFromUrl = params.get("ref");
+
+if (refFromUrl) {
+  // Save User B referral in localStorage
+  localStorage.setItem("referral_code", refFromUrl);
+
+  // Hide dashboard (User A) and show register (User B)
+  document.getElementById("dashboard").classList.add("hidden");
+  document.getElementById("register").classList.remove("hidden");
+
+  // Auto-fill referral code
+  document.getElementById("referralInput").value = refFromUrl;
+}
+
+// =======================
+// Step 4: Register button clear referral code (optional)
+// =======================
+document.getElementById("registerBtn").addEventListener("click", () => {
+  alert("User B registered with referral: " + localStorage.getItem("referral_code"));
+  localStorage.removeItem("referral_code");
+});
+
+
+
 
 
 
